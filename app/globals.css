@@ -2,26 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+
+@layer utilities{
+  .bg-navbar {
+    @apply bg-gradient-to-l from-red-600 via-red-800 to-red-900
   }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  .btn-primary {
+    @apply rounded-md border-2 border-primary bg-primary px-4 py-2 text-sm text-white 
+        transition-colors duration-300 hover:bg-primary/80
+  }
+  .btn-outline{
+    @apply  rounded-md border-2 border-white px-4 py-2 text-sm text-white transition-colors duration-300
+  }
 }
