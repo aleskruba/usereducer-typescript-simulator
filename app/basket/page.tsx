@@ -30,7 +30,7 @@ const Basket = () => {
 
   
   return (
-    <div className={`${theme === 'dark' ? 'bg-gray-500 h-full pb-10 text-white  ' : null}`}> 
+    <div className={`${theme === 'dark' ? 'bg-gray-500 min-h-screen pb-10 text-white  ' : null}`}> 
     <div className='pt-24 flex  justify-center items-center'>
       {state.basketList.length <= 0 &&  'NO PRODUCTS IN BASKET'}
       { state.basketList.map(product =>(
@@ -57,11 +57,13 @@ const Basket = () => {
 
     </div>
 
+   { state.basketList.length > 0 && 
+
       <div className='flex justify-center items-center mt-20'>
       
       <Summary/>
       
-      </div>
+      </div>   }
 
     </div>
 
