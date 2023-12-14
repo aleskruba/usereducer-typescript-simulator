@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link';
 import { useThemeContext } from './theme-context';
 
 import { FaUserCircle } from "react-icons/fa";
@@ -27,20 +28,19 @@ function ResponsiveMenu({toggleMenu}:NAVBARType) {
           <FaUserCircle size={50}/>
               <div>
           
-                <h1>Ales Kruba</h1>
-                <h1 className='text-sm text-slate-500'>Premium User</h1>
-              </div>
+                <h1>User</h1>
+             </div>
           </div>
           <nav className='mt-12'>
             <ul className='space-y-4 text-xl'>
-              <li><a href="/crud">CRUD
-                  </a>
+              <li><Link  href="/crud">CRUD
+                  </Link >
               </li>
-              <li><a href="/eshop">E-SHOP
-                  </a>
+              <li><Link  href="/eshop">E-SHOP
+                  </Link >
               </li>
-              <li><a href="/eshoptransactions">E-SHOP TRANSACTIONS
-                  </a>
+              <li><Link  href="/eshoptransactions">E-SHOP TRANSACTIONS
+                  </Link >
               </li>
             </ul>
           </nav>
