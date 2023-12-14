@@ -8,7 +8,7 @@ function Hero() {
     const {theme} = useThemeContext()
 
   return (
-    <div className={`${theme === 'dark' ? 'bg-gray-500 text-white' : null}`}>
+    <div className={`${theme === 'dark' ? 'bg-gray-500 text-white ' : null}`}>
       <div className='h-screen flex flex-col  items-center pt-24'>
           <h1 className='text-3xl font-sans'>useReducer SIMULATOR (NO-DATABASE )</h1>
           <div className='flex flex-col  items-left mt-24'>

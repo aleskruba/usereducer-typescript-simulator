@@ -47,7 +47,7 @@ const ArrayComponent = () => {
  
     return (
 
-    <div className='grid grid-cols-5 px-5 pb-2 gap-1 mt-20'>
+    <div className='grid grid-cols-5 px-5 pb-2 gap-1 mt-20 '>
   {state.nameList.map((item, index) => (
     <Fragment key={item.id}>
       <div >{index+1}</div>

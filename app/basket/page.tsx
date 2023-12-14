@@ -30,8 +30,8 @@ const Basket = () => {
 
   
   return (
-    <div className={`${theme === 'dark' ? 'bg-gray-500 h-screen  text-white ' : null}`}> 
-    <div className='pt-24 flex justify-center items-center'>
+    <div className={`${theme === 'dark' ? 'bg-gray-500 h-full pb-10 text-white  ' : null}`}> 
+    <div className='pt-24 flex  justify-center items-center'>
       {state.basketList.length <= 0 &&  'NO PRODUCTS IN BASKET'}
       { state.basketList.map(product =>(
          <div key={product.id}className={`${theme === 'dark' ? 

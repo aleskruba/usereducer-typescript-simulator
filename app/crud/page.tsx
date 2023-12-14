@@ -10,7 +10,7 @@ function Crud() {
 
   return (
       
-    <div className={`grid grid-cols-1 md:grid-cols-2 pt-24  h-screen ${theme === 'dark' ? 'bg-gray-500 text-white' : null}`}>
+    <div className={`grid grid-cols-1 md:grid-cols-2 pt-24  min-h-screen ${theme === 'dark' ? 'bg-gray-500 text-white' : null}`}>
     
     
        <div className=''> 

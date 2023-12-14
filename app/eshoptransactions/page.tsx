@@ -20,7 +20,7 @@ const Page = () => {
 
 
   return (
-    <div className={`${theme === 'dark' ? 'bg-gray-500 h-screen text-white' : ''}`}>
+    <div className={`${theme === 'dark' ? 'bg-gray-500 min-h-screen  text-white' : ''}`}>
       <div className='flex justify-center items-center flex-col md:flex-row'>
         <div className='flex items-center flex-col h-[100%] md:h-screen w-screen pt-24'>
           <h1 className={`${theme === 'dark' ? 'text-red-200 text-2xl' : 'text-red-800 text-2xl'}`}>MY Orders</h1>

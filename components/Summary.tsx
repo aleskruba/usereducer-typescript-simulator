@@ -8,7 +8,7 @@ const Summary = () => {
 
 
   return (
-    <div className='w-[400px] h-auto bg-black text-white border border-solid '>
+    <div className='w-[400px] h-[210px] bg-black text-white border border-solid '>
           
             <div className=' flex justify-center items-center flex-col mt-5'>
             {state.basketList.map(product =>( 
@@ -26,7 +26,7 @@ const Summary = () => {
                 <h1>total price: {totalPriceAmount}</h1>
             </div>
             <div className=' flex justify-center items-center mt-5 '>
-                <div className='w-[180px] bg-blue-900 text-center pt-2 pb-2 rounded-sm mb-10 cursor-pointer hover:bg-blue-200 hover:text-black'
+                <div className='w-[180px] bg-blue-900 text-center pt-2  rounded-sm mb-10 cursor-pointer hover:bg-blue-200 hover:text-black'
                     onClick={submitFunction}>
                 ORDER NOW !
                 </div>
