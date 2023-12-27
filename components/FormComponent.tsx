@@ -2,6 +2,7 @@ import React, { ChangeEvent,useRef } from 'react'
 import { useCRUDContext } from './crud-context'
 import { v4 as uuidv4 } from 'uuid';
 import { Listbox } from '@headlessui/react';
+import { useThemeContext } from './theme-context';
 
 const countries = [
   'USA',
@@ -13,6 +14,9 @@ const countries = [
 
 
 const FormComponent = () => {
+
+
+  const {theme} = useThemeContext()
 
     const nameInputRef =  useRef<HTMLInputElement>(null);;
 
@@ -168,7 +172,8 @@ const FormComponent = () => {
        />
        <input type="button" 
        value='cancel' 
-       className='bg-gray-500 w-[130px] rounded-md mt-2 cursor-pointer'
+       className={ `${theme === 'dark' ? 'bg-gray-300 text-black w-[130px] rounded-md mt-2 cursor-pointer ' : 'bg-gray-700  text-white w-[130px] rounded-md mt-2 cursor-pointer'}`}
+
        onClick={cancelFunction}       
       />
       </div> 
