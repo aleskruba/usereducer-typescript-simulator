@@ -87,20 +87,17 @@ const reducer = (state: State, action: Action): State => {
            case 'ADDTOBASKET':
                 const { product } = action.payload;
                 const existingItem = state.basketList.find((item) => item.id === product.id);
-    
+       
                 if (existingItem) {
                     if (product.amount > existingItem.amount) {
                         const updatedBasket = state.basketList.map((item) =>
                             item.id === product.id ? { ...item, amount: item.amount + 1 } : item
                         );
     
-                      /*   const updatedProducts = state.products.map((prod) =>
-                            prod.id === product.id ? { ...prod, amount: prod.amount - 1 } : prod
-                        ); */
-    
+                  
                     return { ...state, basketList: updatedBasket, /* products: updatedProducts */ };
                     } else {
-                        // No more items on stock
+                
                         alert('No more items on stock');
                         return state;
                     }

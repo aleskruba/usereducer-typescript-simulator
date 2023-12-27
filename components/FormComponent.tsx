@@ -1,13 +1,22 @@
 import React, { ChangeEvent,useRef } from 'react'
 import { useCRUDContext } from './crud-context'
 import { v4 as uuidv4 } from 'uuid';
+import { Listbox } from '@headlessui/react';
+
+const countries = [
+  'USA',
+  'Canada',
+  'Czechia',
+  'Germany',
+  'Italy'
+]
 
 
 const FormComponent = () => {
 
     const nameInputRef =  useRef<HTMLInputElement>(null);;
 
-    const {dispatch,state} = useCRUDContext()
+    const {dispatch,state,setIsOpenEdit} = useCRUDContext()
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
             dispatch({type:'ENTERNAME', 
@@ -17,6 +26,8 @@ const FormComponent = () => {
 
                 const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
                      e.preventDefault();
+
+                   
                    
                      const nameRegex = /^[A-Za-z]+$/; // Regex to match only alphabetic characters
                      const isValidName = typeof state.name === 'string' && nameRegex.test(state.name.trim());
@@ -34,6 +45,7 @@ const FormComponent = () => {
                            id: uuidv4(),
                            name: state.name,
                            city: state.city,
+                           country: state.country
                          },
                        });
                    
@@ -48,12 +60,13 @@ const FormComponent = () => {
       
                    const editSubmit = (e: React.FormEvent<HTMLFormElement>) => {
                      e.preventDefault();
-                   
+                     setIsOpenEdit(false)
+                    
                      const nameRegex = /^[A-Za-z]+$/; // Regex to match only alphabetic characters
-                     const { name, city } = state;
+                     const { name, city, country } = state;
                      const isValidName = typeof name === 'string' && nameRegex.test(name.trim());
                      const isValidCity = typeof city === 'string' && nameRegex.test(city.trim());
-                   
+             
                      if (isValidName && isValidCity && name.trim().length > 0 && city.trim().length > 0) {
                        dispatch({
                          type: 'UPDATENAME',
@@ -61,6 +74,7 @@ const FormComponent = () => {
                            id: state.selectedID || '',
                            name,
                            city,
+                           country : country
                          },
                        });
                    
@@ -80,7 +94,9 @@ const FormComponent = () => {
               dispatch({
                 type: 'CLOSEEDIT'
             })
+            setIsOpenEdit(false)
             }
+
 
   return (
        
@@ -99,6 +115,49 @@ const FormComponent = () => {
                    className='bg-gray-200 w-[300px] p-2 '
                    value={state.city}
                    onChange={handleChange}/>
+
+<Listbox value={state.country} onChange={(value) => dispatch({ type: 'ENTERNAME', payload: { name: 'country', value } })}>
+  {({ open }) => (
+    <>
+      <Listbox.Button className='w-[300px] bg-white border border-gray-300 rounded-md py-2 px-3 shadow-sm focus:outline-none focus:border-indigo-500'>
+        {state.country ? state.country : 'Choose country'}
+      </Listbox.Button>
+      {open && (
+        <Listbox.Options className='absolute z-10 w-[300px] py-1 mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-auto focus:outline-none'>
+          {state.country && (
+            <Listbox.Option value={state.country}>
+              {({ selected }) => (
+                <div className={`py-2 px-4 cursor-pointer ${selected ? 'bg-red-600 text-white text-xs' : 'text-gray-900'}`}>
+                  previous selected country {state.country}
+                </div>
+              )}
+            </Listbox.Option>
+          )}
+          <Listbox.Option value="">
+            {({ selected }) => (
+              <div className={`py-2 px-4 cursor-pointer ${selected ? 'bg-indigo-600 text-white' : 'text-gray-900'}`}>
+               {!state.country && 'Choose country'}
+              </div>
+            )}
+          </Listbox.Option>
+          {countries.map((country, index) => (
+            <Listbox.Option key={index} value={country}>
+              {({ selected }) => (
+                <div className={`py-2 px-4 cursor-pointer ${selected ? 'bg-indigo-600 text-white' : 'text-gray-900'}`}>
+                  {country}
+                </div>
+              )}
+            </Listbox.Option>
+          ))}
+        </Listbox.Options>
+      )}
+    </>
+  )}
+</Listbox>
+
+
+
+
 
        
        {state.editButton ? 

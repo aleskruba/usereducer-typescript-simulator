@@ -12,7 +12,8 @@ const Products = () => {
     const {state, dispatch,addToBasketFunction} = useESHOPContext()
 
     const handleBuyClick = (id: number) => {
-      const productToAdd = products.find((product) => product.id === id);
+      const productToAdd = state.products.find((product) => product.id === id);
+
      
        if (productToAdd) {
           addToBasketFunction(productToAdd); // Pass the entire product object
@@ -31,8 +32,10 @@ const Products = () => {
             <h1 className='font-bold'>{product.name}</h1>
             <h1>price: ${product.price}</h1>
             <h1>amount:{product.amount}</h1>
-            <div className={`${theme === 'dark' ? 'bg-green-200 text-black' : 'bg-white'}   w-[100px]  text-center text-black `} 
-                   onClick={() => handleBuyClick(product.id)}
+            <div className={`${
+                theme === 'dark' ? 'bg-green-200 text-black' : 'bg-white'
+              } w-[100px] text-center text-black ${product.amount <= 0 ? 'bg-gray-300 text-white pointer-events-none' : ''}`}
+                onClick={ product.amount > 0  ? () => handleBuyClick(product.id) : () => {alert('No more items on the stock')}}
             >BUY</div>
         </div>
         )

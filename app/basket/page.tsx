@@ -11,7 +11,7 @@ const Basket = () => {
 
 
   const handleBuyClick = (id: number) => {
-    const productToAdd = products.find((product) => product.id === id);
+    const productToAdd = state.products.find((product) => product.id === id);
 
      if (productToAdd) {
         addToBasketFunction(productToAdd); // Pass the entire product object
@@ -19,7 +19,7 @@ const Basket = () => {
 };
 
   const handleBuyClickRemove = (id: number) => {
-    const productToAdd = products.find((product) => product.id === id);
+    const productToAdd = state.products.find((product) => product.id === id);
  
     if (productToAdd) {
       removeFromBasketFunction(productToAdd); // Pass the entire product object
