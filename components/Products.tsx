@@ -3,13 +3,13 @@ import React from 'react'
 import { products } from './eshop-context'
 import { useThemeContext } from './theme-context'
 import { useESHOPContext } from './eshop-context'
-
+import { SlBasket } from "react-icons/sl";
 
 const Products = () => {
 
 
     const {theme} = useThemeContext()
-    const {state, dispatch,addToBasketFunction} = useESHOPContext()
+    const {state, dispatch,addToBasketFunction,totalAmount} = useESHOPContext()
 
     const handleBuyClick = (id: number) => {
       const productToAdd = state.products.find((product) => product.id === id);
@@ -23,7 +23,12 @@ const Products = () => {
 
     return (
      <div className={`${theme === 'dark' ? 'bg-gray-500 text-white' : null}`}> 
-    <div className='flex justify-center items-center h-screen pt-24'>
+
+    <div className='flex flex-col justify-center items-center h-screen pt-24'>
+      {totalAmount > 0 &&
+    <h1 className='text-red-800 font-bold flex'>Check  <span className='ml-2 mr-2 text-2xl'> <SlBasket /></span>   in NAVBAR</h1>   
+    }
+    <div className=' flex  justify-center items-center mt-4'>   
         {state.products.map(product =>(
         <div key={product.id}className={`${theme === 'dark' ? 
          'flex flex-col justify-center mr-2 items-center w-[150px] h-[150px] border border-solid'
@@ -40,6 +45,7 @@ const Products = () => {
         </div>
         )
         )}
+        </div>
       
       </div>
     </div>
